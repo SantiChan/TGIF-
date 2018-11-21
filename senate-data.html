@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       
+    </head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="Style/senate-house.css" rel="stylesheet" type="text/css">
+    
+	<title>Senate Data</title>
+    <body>
+        <div class="container">
+			<a title="TGIF" href="home.html#info"> <img class="img-responsive" src="img/logo2.png" class="img-thumbnail" alt="Cinque Terre"></a>
+            
+         </div>
+         <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+           
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="Index.html">Home</a>
+              </li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown"  href="#">Congress 113
+                <span class="caret"></span></a>
+                <ul  class="dropdown-menu">
+                  <li><a href="senate-data.html#info">Senate</a></li>
+                  <li><a href="house-data.html#info">House</a></li>
+                </ul>
+              </li>
+               <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown"  href="#">Attendance
+                <span class="caret"></span></a>
+                <ul  class="dropdown-menu">
+                  <li><a href="senate-attendance-starter-page.html">Senate</a></li>
+                  <li><a href="house-attendance-starter-page.html">House</a></li>
+                </ul>
+              </li>
+               <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown"  href="#">Party Loyalty
+                <span class="caret"></span></a>
+                <ul  class="dropdown-menu">
+                  <li><a href="senate-attendance-starter-page.html">Senate</a></li>
+                  <li><a href="house-party-loyalty-starter-page.html">House</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>        
+  
+
+        <header>            
+            <div>
+            </div>
+        </header>
+        <!--Table container-->
+        <div class="text-style">
+        <div>
+            <h2>Senators</h2>
+            <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
+		</div>
+          <div class="selector">
+            	Filter by party:
+            	 <input  type="checkbox" name="party" value="R" id="Rep">Republican <!-- le damos check porque es nuestra funcion-->
+            	 <input  type="checkbox" name="party" value="D" id="Dem">Democrat
+            	 <input  type="checkbox" name="party" value="I" id="Ind">Independent
+            
+         	   <div class="align" align="right">
+          	   <span >Filter by state:</span>party
+           	  
+            <select  id="states">
+				<option value="All">All States</option>
+           
+            </select>
+			  </div>
+			</div>
+    	    <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Party</th>
+                        <th>State</th>
+                        <th>Years in office</th>
+                        <th>Total votes</th>
+                    </tr>
+                </thead>
+                <tbody id = "tbody">
+                    
+					
+				</tbody>
+           
+            </table>
+			<pre id ="senate-data"></pre>
+			</div>
+			<div class="container-fluid" style="background-color:#E8E8F0">
+    	 <p align="center">c-2016 TGIF | All Right Reserved</p>
+		</div> 
+		
+		<script src="Scripts/ajax-senate.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

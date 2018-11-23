@@ -17,6 +17,9 @@ fetch("https://api.propublica.org/congress/v1/113/senate/members.json",{
 	getData();
 	leastEngaged();
 	mostEngaged();
+	document.getElementById("loader").style.display = "none";
+	document.getElementById("loader2").style.display = "none";
+	document.getElementById("loader3").style.display = "none";
 	
 })
 }
@@ -35,6 +38,9 @@ else if(window.location.pathname == ("/house-attendance-starter-page.html")){
 			getData();
 			leastEngaged();
 			mostEngaged();
+	document.getElementById("loader").style.display = "none";
+	document.getElementById("loader2").style.display = "none";
+	document.getElementById("loader3").style.display = "none";
 	})
 }
 else if(window.location.pathname == ("/senate-party-loyalty-starter-page.html")){
@@ -52,6 +58,9 @@ else if(window.location.pathname == ("/senate-party-loyalty-starter-page.html"))
 		getData();
 		partyPercentBot();
 		partyPercentTop();
+	document.getElementById("loader").style.display = "none";
+	document.getElementById("loader2").style.display = "none";
+	document.getElementById("loader3").style.display = "none";
 		
 	})
 }
@@ -72,6 +81,9 @@ else if(window.location.pathname == ("/house-party-loyalty-starter-page.html")){
 			getData();
 			partyPercentBot();
 			partyPercentTop();
+	document.getElementById("loader").style.display = "none";
+	document.getElementById("loader2").style.display = "none";
+	document.getElementById("loader3").style.display = "none";
 	})
 }
 
@@ -154,13 +166,22 @@ function numVotes(){
 			indPercent.push(members[i].votes_with_party_pct)
 		}
 	}
+
+ 
 }
+	
+	
+
+		
 
 numVotes();
+	
+	
 
 	var x = 0
 	var y = 0
 	var z = 0 
+	var l = 0
 	
 function getPercent(){ 
 	
@@ -177,22 +198,34 @@ function getPercent(){
 	for(n=0; n< indPercent.length; n++){
 		z = indPercent[n] + z;
 }
+	for (r=0; r< members.length; r++){
+		l = members[r].votes_with_party_pct + l;
+	}
 }
 getPercent();
 
+//function hola (){
 
 var d = y / numDem.length;
 var r = x / numRep.length;
 var i = z / numInd.length;
+var l = l / members.length;
 
 statistics.Num_Party_Votes_Democrats = d.toFixed(2);
 statistics.Num_Party_Votes_Republicans = r.toFixed(2);
 statistics.Num_Party_Votes_Independents= i.toFixed(2);
+statistics.total_prct_votes = l.toFixed(2);
+	
+	if( statistics.Number_of_Indepedent == 0){
+	statistics.Num_Party_Votes_Independents = 0;
+}
 
 
+console.log(l);
 console.log(d);
 console.log(r);
 console.log(i);
+
 
 var percentVotes = data.results[0].members 
 
@@ -294,6 +327,8 @@ statistics.Votes_by_Party_bot = percentPartyVotesBot;
 
 function getData(){
 	
+	//REFACTOR
+	
 	var tbody = document.getElementById("SenateGlance");
 	
 	var tr = document.createElement("tr");
@@ -353,8 +388,17 @@ function leastEngaged() {
   for (var i = 0; i < members.length; i++) {
 
       
-          var row = document.createElement("tr");
-          row.insertCell().innerHTML = members[i].first_name;
+          var name = members[i].first_name;
+		  var lastName = members[i].last_name;
+		  var link = members[i].url;
+		  var addlink = document.createElement("a");
+		  var row = document.createElement("tr");
+		
+		  addlink.setAttribute("href", link);
+		  addlink.setAttribute("target", "_blank");
+		  addlink.append(name +" "+ lastName +" ");
+         
+	  	  row.insertCell().append(addlink);
           row.insertCell().innerHTML = members[i].missed_votes;
           row.insertCell().innerHTML = members[i].missed_votes_pct;
           myTable.append(row);
@@ -375,13 +419,15 @@ function mostEngaged(){
 	for (var i = 0; i< members.length; i++){
 		
 		
-		var name = members[i].first_name;
-		var link = members[i].url;
-		var addlink = document.createElement("a");
-		var row = document.createElement("tr");
-		addlink.append(name);
-		addlink.setAttribute("href", link);
-		addlink.setAttribute("target", "_blank");
+		 var name = members[i].first_name;
+		  var lastName = members[i].last_name;
+		  var link = members[i].url;
+		  var addlink = document.createElement("a");
+		  var row = document.createElement("tr");
+		
+		  addlink.setAttribute("href", link);
+		  addlink.setAttribute("target", "_blank");
+		  addlink.append(name +" "+ lastName +" ");
 		
 		row.insertCell().append(addlink);
 		row.insertCell().innerHTML = members[i].missed_votes;
@@ -400,9 +446,18 @@ function partyPercentBot(){
 	myTable.innerHTML = "";
 	
 	for (i = 0; i< members.length; i++){
-		var row = document.createElement("tr");
 		
-		row.insertCell().innerHTML = members[i].first_name
+		  var name = members[i].first_name;
+		  var lastName = members[i].last_name;
+		  var link = members[i].url;
+		  var addlink = document.createElement("a");
+		  var row = document.createElement("tr");
+		
+		  addlink.setAttribute("href", link);
+		  addlink.setAttribute("target", "_blank");
+		  addlink.append(name +" "+ lastName +" ");
+		
+		row.insertCell().append(addlink);
 		row.insertCell().innerHTML = members[i].total_votes
 		row.insertCell().innerHTML = members[i].votes_with_party_pct
 		
@@ -422,11 +477,19 @@ function partyPercentTop(){
 	
 	for (i = 0; i< members.length; i++){
 		
-		var row = document.createElement("tr");
+		  var name = members[i].first_name;
+		  var lastName = members[i].last_name;
+		  var link = members[i].url;
+		  var addlink = document.createElement("a");
+		  var row = document.createElement("tr");
 		
-		row.insertCell().innerHTML = members[i].first_name
-		row.insertCell().innerHTML = members[i].total_votes
-		row.insertCell().innerHTML = members[i].votes_with_party_pct
+		  addlink.setAttribute("href", link);
+		  addlink.setAttribute("target", "_blank");
+		  addlink.append(name +" "+ lastName +" ");
+		
+		row.insertCell().append(addlink);
+		row.insertCell().innerHTML = members[i].total_votes;
+		row.insertCell().innerHTML = members[i].votes_with_party_pct;
 		
 		secondTable.append(row);
 		

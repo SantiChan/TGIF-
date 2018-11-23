@@ -1,6 +1,6 @@
 /*Api-key: pHg8xak6GorPY6my2GSFOpLwbE6kvHiwflmjoF1S*/
 var data;
-
+if(window.location.pathname == ("/senate-data.html")){
 fetch("https://api.propublica.org/congress/v1/113/senate/members.json",{
 	method: "GET",
 	headers:{
@@ -13,12 +13,30 @@ fetch("https://api.propublica.org/congress/v1/113/senate/members.json",{
 	data = myData;
 	getMembers(data.results[0].members);
 	getDuplicates();
+	document.getElementById("loader").style.display = "none";
 	
 })
+}
+else if(window.location.pathname == ("/house-data.html")){
+	fetch("https://api.propublica.org/congress/v1/113/house/members.json",{
+	method: "GET",
+	headers:{
+	 "X-API-key":"pHg8xak6GorPY6my2GSFOpLwbE6kvHiwflmjoF1S"
+	}
+}).then(function(result){
+	return result.json()
+}).then(function(myData){
+	console.log(myData);
+	data = myData;
+	getMembers(data.results[0].members);
+	getDuplicates();
+	document.getElementById("loader").style.display = "none";
+})
+	
+}
 
 
-
-function getMembers(myNewArray){ 
+function getMembers(myNewArray){ //creamos un parametro para que pueda recibir cualquier member filtrados para crear la tabla con los filtros seleccionados
 	
     var tbody = document.getElementById("tbody");tbody
 	tbody.innerHTML =''; 
@@ -72,7 +90,11 @@ function getMembers(myNewArray){
 		tbody.append(myTr);
 		
 	   }
-	
+	if (myNewArray.length == 0){
+		var trAlert = document.createElement("tr");
+		trAlert.append("No members with this criteria ");
+		tbody.append(trAlert);
+	}
 	
 	}
 
@@ -88,7 +110,7 @@ function getDuplicates(){
 
 		var stateName = data.results[0].members[s].state;
 		
-		repeatStates.push(stateName);
+		repeatStates.sort().push(stateName);
 	
 		var result = [];
 		
@@ -113,37 +135,39 @@ function getDuplicates(){
 		option.append(result[m]);
 		states.append(option);
 	}
-	console.log(repeatStates);
+	console.log(repeatStates);//con esto hacemos el append de los estados sin duplicados para mi option.
+	
 }
 
 
 
 
-document.getElementById("Rep").addEventListener("click", check);
+document.getElementById("Rep").addEventListener("click", check); //con esto sabremos cuando esta clicado
 document.getElementById("Dem").addEventListener("click", check);
 document.getElementById("Ind").addEventListener("click", check);
 
 function check(){ 
 	var aParty = [];
 	var checked = 
-	document.querySelectorAll('input[name=party]:checked');
+	document.querySelectorAll('input[name=party]:checked');// crea una lista de los valores seleccionados en el checkbox
 
 
-	for( p = 0; p < checked.length; p++){
+	for( p = 0; p < checked.length; p++){ //para convertirlo en array usamos for
 		aParty.push(checked[p].value);
 
 	}
-	filter(aParty);
+	filter(aParty); //llamo a la funcion de estados con los casos, al clickar los check activare la funcion de filtros y estados.
 }
 
 
 document.getElementById("states").addEventListener("change", check);
 
 
-function filter(selectParty){ 
+function filter(selectParty){ //aqui tengo los estados con la funcion de filtros, array de checks
 	
 	var takeValue = document.querySelector('#states').value;
 	 console.log(takeValue);
+	
 	var arrayFilter = [];
   
 	if (selectParty.length == 0 && takeValue == "All") {
@@ -156,7 +180,7 @@ function filter(selectParty){
 		
 			for ( n = 0; n < selectParty.length; n++){
 			
-				if( data.results[0].members[i].party == selectParty[n]){
+				if( data.results[0].members[i].party == selectParty[n]){ //si encuentra algun miembro con ese partido
 				 
 				arrayFilter.push(data.results[0].members[i]);
 	   }
@@ -198,5 +222,5 @@ function filter(selectParty){
   }
 	
  
-getMembers(arrayFilter);
+getMembers(arrayFilter); //queremos que la tabla se cree cuando array filter obtenga algun dato
 }

@@ -6,11 +6,23 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="Style/senate-house.css" rel="stylesheet" type="text/css">
     
-	<title>Senate Data</title>
+	<title>Senators</title>
     <body>
+        <div class="logo">
+         	 <img class="size-logo" src="img/capitol-icon.jpg">
+         </div>
+          <div class="size-title">
+          
+         <p class="title"> Transparent Government in Fact</p>
+         </div>
+       
         <div class="container">
-			<a title="TGIF" href="home.html#info"> <img class="img-responsive" src="img/logo2.png" class="img-thumbnail" alt="Cinque Terre"></a>
-            
+			<a title="TGIF" href="Index.html"> <img class="img-responsive size-logo2" src="img/logo2.png" class="img-thumbnail" alt="Cinque Terre"></a>
+             <div class="link">
+			
+				<button type="button" class="btn btn-primary btn-lg"><a href="https://www.whitehouse.gov/the_press_office/TransparencyandOpenGovernment" style="color:white">info@tgif.net</a></button>
+			<span class="dashicons dashicons-email" width="20px" height="20px"></span>
+            </div>
          </div>
          <nav class="navbar navbar-inverse">
           <div class="container-fluid">
@@ -72,9 +84,10 @@
             </select>
 			  </div>
 			</div>
-    	    <table class="table table-hover">
+   	    <div class="fix-table">
+    	    <table class="table table-hover table-bordered">
                 <thead>
-                    <tr>
+                    <tr class="active">
                         <th>Name</th>
                         <th>Party</th>
                         <th>State</th>
@@ -88,12 +101,10 @@
 				</tbody>
            
             </table>
-			<pre id ="senate-data"></pre>
+             <div class="lds-roller" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
 			</div>
-			<div class="container-fluid" style="background-color:#E8E8F0">
-    	 <p align="center">c-2016 TGIF | All Right Reserved</p>
-		</div> 
-		
+		 <pre align="center" style="font-weight: bold">&copy; 2018 TGIF | All Right Reserved</pre>
 		<script src="Scripts/ajax-senate.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

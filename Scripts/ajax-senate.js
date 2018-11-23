@@ -1,6 +1,6 @@
 /*Api-key: pHg8xak6GorPY6my2GSFOpLwbE6kvHiwflmjoF1S*/
 var data;
-if(window.location.pathname == ("/senate-data.html")){
+if(window.location.pathname == ("/TGIF-/senate-data.html")){
 fetch("https://api.propublica.org/congress/v1/113/senate/members.json",{
 	method: "GET",
 	headers:{
@@ -17,7 +17,7 @@ fetch("https://api.propublica.org/congress/v1/113/senate/members.json",{
 	
 })
 }
-else if(window.location.pathname == ("/house-data.html")){
+else if(window.location.pathname == ("/TGIF-/house-data.html")){
 	fetch("https://api.propublica.org/congress/v1/113/house/members.json",{
 	method: "GET",
 	headers:{

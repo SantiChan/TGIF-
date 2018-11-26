@@ -1,7 +1,7 @@
 //quitar variables de members y poner members = myData.results[0].members en mis if y probar
 
 var data;
-if(window.location.pathname == ("/TGIF-/senate-attendance-starter-page.html")){
+if(document.title == ("Senate Attendance")){
 fetch("https://api.propublica.org/congress/v1/113/senate/members.json",{
 	method: "GET",
 	headers:{
@@ -23,7 +23,7 @@ fetch("https://api.propublica.org/congress/v1/113/senate/members.json",{
 	
 })
 }
-else if(window.location.pathname == ("/TGIF-/house-attendance-starter-page.html")){
+else if(document.title == ("House Attendance")){
 	
 	fetch("https://api.propublica.org/congress/v1/113/house/members.json",{
 		method: "GET",
@@ -43,7 +43,7 @@ else if(window.location.pathname == ("/TGIF-/house-attendance-starter-page.html"
 	document.getElementById("loader3").style.display = "none";
 	})
 }
-else if(window.location.pathname == ("/TGIF-/senate-party-loyalty-starter-page.html")){
+else if(document.title == ("Party Loyalty Senate")){
 	fetch("https://api.propublica.org/congress/v1/113/senate/members.json",{
 		method: "GET",
 		headers: {
@@ -66,7 +66,7 @@ else if(window.location.pathname == ("/TGIF-/senate-party-loyalty-starter-page.h
 }
 
 
-else if(window.location.pathname == ("/TGIF-/house-party-loyalty-starter-page.html")){
+else if(document.title == ("Party Loyalty House")){
 	
 	fetch("https://api.propublica.org/congress/v1/113/house/members.json",{
 		method: "GET",

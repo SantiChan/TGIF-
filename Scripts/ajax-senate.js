@@ -1,6 +1,9 @@
 /*Api-key: pHg8xak6GorPY6my2GSFOpLwbE6kvHiwflmjoF1S*/
 var data;
-if(window.location.pathname == ("/TGIF-/senate-data.html")){
+if(document.title == ("Senators"))
+	
+	//usaremos el document.title == + el nombre de casa title para que funcione en github y de forma local
+{
 fetch("https://api.propublica.org/congress/v1/113/senate/members.json",{
 	method: "GET",
 	headers:{
@@ -17,7 +20,7 @@ fetch("https://api.propublica.org/congress/v1/113/senate/members.json",{
 	
 })
 }
-else if(window.location.pathname == ("/TGIF-/house-data.html")){
+else if(document.title == ("Congressmen")){
 	fetch("https://api.propublica.org/congress/v1/113/house/members.json",{
 	method: "GET",
 	headers:{

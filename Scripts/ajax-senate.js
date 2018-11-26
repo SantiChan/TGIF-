@@ -146,11 +146,11 @@ document.getElementById("Rep").addEventListener("click", check); //con esto sabr
 document.getElementById("Dem").addEventListener("click", check);
 document.getElementById("Ind").addEventListener("click", check);
 
+
 function check(){ 
 	var aParty = [];
 	var checked = 
 	document.querySelectorAll('input[name=party]:checked');// crea una lista de los valores seleccionados en el checkbox
-
 
 	for( p = 0; p < checked.length; p++){ //para convertirlo en array usamos for
 		aParty.push(checked[p].value);
@@ -205,7 +205,6 @@ function filter(selectParty){ //aqui tengo los estados con la funcion de filtros
 	 for ( i = 0; i < data.results[0].members.length; i++){
 		
 		for ( n = 0; n < selectParty.length; n++){
-			
 			
 			if( data.results[0].members[i].state == takeValue && data.results[0].members[i].party == selectParty[n]){
 				 
